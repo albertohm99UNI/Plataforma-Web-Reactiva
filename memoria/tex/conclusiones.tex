@@ -1,0 +1,112 @@
+% Contenidos del capítulo.
+% Las secciones presentadas son orientativas y no representan
+% necesariamente la organización que debe tener este capítulo.
+
+\section{Revisión de costes}
+Cuando finaliza un proyecto es necesario evaluar nuevamente los costes reales que éste ha tenido. Estos costes se dividen en costes temporales y costes en personal y recursos.
+
+En cuanto a costes temporales, este \gls{tfm} tenía estimada una duración de 17 semanas lo que equivale a unos 4 meses y medio comenzando el desarrollo en noviembre del año 2024 y terminándolo en marzo del año 2025. En esta estimación se había planteado una serie de riesgos y medidas para que el proyecto contase con un margen de error para posibles contratiempos. Se han encontrado contratiempos en las tareas relacionadas con servicios externos. En concreto, se gastó más tiempo en la intención de obtener algunos recursos web como son rutas cercanas (implementado parcialmente) o eventos, que finalmente se tomo la decisión de dejar para trabajo futuro ya que no era viable realizar una extracción de datos de forma automática. En este caso, se estima que el tiempo perdido fue de 1 semana (22 horas) lo cual esta contemplado dentro del margen estipulado. Por lo que el tiempo total de desarrollo fue de 17 semanas, que es el tiempo estimado inicialmente.
+
+Por otro lado, se encuentran los costes en personal. En este aspecto se estimaron 6.015,94\euro\space para las 17 semanas (que incluyen el margen consumido) de trabajo siendo el salario por hora de 16,15\euro\space. En este caso, el desarrollo termino dentro del plazo acordado por lo que no se incurrió en costes adicionales. 
+
+El segundo coste a tener en cuenta es el coste en materiales. En la Tabla~\ref{tbl:amortizacion1} se muestra el coste real de amortización de los materiales utilizados para el desarrollo del proyecto.
+
+
+\begin{table}[h!t!]
+		
+		\begin{tabular}{|l|l|c|c|}
+			\hline
+			\textbf{Elemento} & \textbf{Coste} & \textbf{\begin{tabular}[c]{@{}c@{}}Meses \\ de \\ utilización\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Amortización\\ (Formula \eqref{eq:amortiza}) \end{tabular}} \\ \hline
+			\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Ordenador \\ para desarrollo\end{tabular}} & \multicolumn{1}{c|}{890 \euro} & 0.33                                                                           &   73,43\euro                                                  \\ \hline
+			\end{tabular}
+	 \centering
+	\caption{ Coste real de amortización de materiales para el desarrollo del proyecto}
+	\label{tbl:amortizacion1}
+\end{table}
+
+Para finalizar, la Tabla \ref{tbl:costes1} muestra el coste final de cada activo utilizado durante el proyecto, incluyendo materiales, equipos de desarrollo y personal. Finalmente, la diferencia obtenida en costes respecto a lo estimado es de 0\euro.
+\begin{table}[h!t!]
+\begin{adjustbox}{width=0.7\textwidth}
+		\begin{tabular}{|c|c|}
+			\hline \textbf{Elemento}
+			& \textbf{Coste (\euro)} \\
+		
+			\hline Amortización portátil para desarrollo
+			& 74,16 \\
+			\hline Recursos humanos
+			& 6.015,94 \\
+			\hline \textbf{Total}
+			& \textbf{6.090,11 \euro} \\
+			\hline
+		\end{tabular}
+	\end{adjustbox}
+	 \centering
+	\caption{Costes reales del proyecto}
+	\label{tbl:costes1}
+\end{table}
+
+
+\section{Conclusiones}
+El desarrollo del presente \gls{tfm} ha permitido diseñar e implementar un sistema distribuido y desplegable en la nube para la gestión de una casa rural. Durante el proyecto, se han integrado diversas tecnologías estudiadas en el máster, abordando tanto la parte de infraestructura como la de desarrollo web, visualización de contenido y análisis de datos.
+
+El primer paso consistió en realizar una valoración de las tecnologías disponibles para el desarrollo y despliegue de sistemas distribuidos modernos. Para ello, se analizaron herramientas de virtualización ligera como Docker, sistemas de orquestación como Kubernetes, y plataformas cloud, aplicando conocimientos adquiridos especialmente en las asignaturas de \textit{Centro de datos y virtualización} y \textit{Computación en la nube}. Esto permitió definir una arquitectura escalable, segura y eficiente, adecuada para la naturaleza de los microservicios propuestos.
+
+Posteriormente, se procedió a la especificación de requisitos funcionales y no funcionales del sistema, integrando prácticas profesionales aprendidas en la asignatura de \textit{Métodos de producción de software}. Esta fase fue clave para definir correctamente los casos de uso, los flujos de usuario y las necesidades técnicas del sistema, alineando los objetivos del proyecto con las necesidades reales de un sistema de gestión de apartamentos turísticos o casas rurales.
+
+Una vez definidos los requisitos, se realizó la planificación temporal del proyecto, incluyendo estimación de tareas, coste y distribución del esfuerzo. Para ello se emplearon herramientas y técnicas aprendidas en la asignatura de \textit{Métodos de producción de software}, permitiendo generar un cronograma ajustado a las fases de desarrollo del \gls{tfm}.
+
+La fase de análisis y diseño se centró en estructurar correctamente la solución desde una perspectiva modular, lo cual fue posible gracias a las asignaturas de \textit{Desarrollo basado en componentes distribuidos y servicios}, \textit{Persistencia relacional y no relacional de datos} y \textit{Seguridad}. En esta etapa se definieron los componentes, servicios, bases de datos, endpoints y mecanismos de comunicación entre módulos, garantizando una arquitectura cohesiva, mantenible y segura.
+
+Durante la etapa de implementación se consolidaron y aplicaron muchos de los conocimientos prácticos del máster. Se desarrolló el \gls{backend} utilizando paradigmas de programación reactiva con tecnologías modernas, como Spring Boot, y bases de datos relacionales y no relacionales, aplicando lo aprendido en \textit{Programación del lado del servidor}, \textit{Desarrollo basado en componentes distribuidos y servicios} y \textit{Persistencia relacional y no relacional de datos}. El frontend se implementó con Angular, incorporando técnicas de desarrollo web aprendidas en \textit{Programación del lado del cliente y visualización} y se diseñó una experiencia de usuario optimizada para dispositivos móviles, integrando contenidos multimedia y funcionalidades interactivas, apoyado en la asignatura de \textit{Gestión y distribución de contenido multimedia}.
+
+También se implementó una \gls{API} de recomendación de integración de redes sociales y un sistema de predicción meteorológica, haciendo uso de técnicas aprendidas en \textit{Análisis de datos web y sociales}. La aplicación ha sido diseñada con una interfaz intuitiva, accesible y con un enfoque responsive, gracias a los conocimientos adquiridos en \textit{Dispositivos móviles y realidad aumentada} y \textit{Programación del lado del cliente y visualización}.
+
+El despliegue final del sistema se realizó utilizando contenedores Docker y orquestación con Kubernetes, quedo pendiente realizar este despliegue final sobre la infraestructura cloud seleccionada durante el estudio, que se realizaría integrando scripts de automatización y configuración avanzada, poniendo en práctica las asignaturas de \textit{Administración de recursos y automatización de operaciones} y \textit{Computación en la nube}. Además, se tuvieron en cuenta aspectos relacionados con la ciberseguridad, tanto en la comunicación como en el almacenamiento de datos, en línea con lo aprendido en la asignatura de \textit{Seguridad}.
+
+Finalmente, se ejecutaron distintas pruebas para garantizar el correcto funcionamiento del sistema. Se realizaron pruebas unitarias, funcionales, de seguridad, de rendimiento y de accesibilidad y posicionamiento, que permitieron validar el sistema para una futura puesta en producción. Esta etapa se apoyó en las metodologías de pruebas estudiadas en \textit{Métodos de producción de software}, \textit{Análisis de datos web y sociales} y \textit{Seguridad}.
+
+En cuanto al cumplimiento de los objetivos planteados al inicio del \gls{tfm}, se puede concluir que:
+
+\begin{itemize}
+    \item \textit{Aplicar los conocimientos adquiridos en las asignaturas de desarrollo \gls{frontend}, \gls{backend} y computación en la nube} se ha logrado mediante la implementación de una plataforma web funcional para una casa rural, que integra reservas, información turística e interacciones avanzadas.
+    \item \textit{Facilitar la consulta de la disponibilidad y la reserva en línea del alojamiento} se ha cumplido mediante un sistema de reservas accesible desde la interfaz de usuario.
+    \item \textit{Mostrar información relevante sobre la casa rural y su entorno} se ha conseguido mediante secciones dedicadas a instalaciones, gastronomía y recomendaciones turísticas.
+    \item \textit{Integrar contenidos multimedia y datos procedentes de fuentes externas} se ha llevado a cabo a través de la incorporación de imágenes, vídeos, mapas interactivos y datos de redes sociales y meteorología.
+    \item \textit{Permitir la gestión de usuarios con distintos roles y funcionalidades asociadas} se ha implementado con autenticación y autorización diferenciada para administradores y huéspedes.
+    \item \textit{Incorporar valoraciones, actividades y recomendaciones personalizadas} se ha realizado con éxito, aunque este aspecto admite mejoras futuras en cuanto a personalización basada en preferencias del usuario.
+    \item \textit{Garantizar la seguridad, escalabilidad y accesibilidad del sistema} se ha trabajado mediante cifrado \gls{tls}, arquitectura basada en contenedores y buenas prácticas de desarrollo web accesible.
+    \item \textit{Asegurar compatibilidad con distintos dispositivos y navegadores web} se ha validado correctamente, obteniendo resultados satisfactorios en entornos móviles y de escritorio.
+\end{itemize}
+
+Si bien todos los objetivos planteados han sido cumplidos, se reconoce que cada uno de ellos ofrece margen de mejora. Estas posibles mejoras se abordan en detalle en sección~\ref{sec:trabajo-futuro} de trabajo futuro.
+
+\section{Trabajo futuro} \label{sec:trabajo-futuro}
+El desarrollo de este \gls{tfm} ha permitido adquirir una serie de conocimientos y habilidades en el ámbito del desarrollo web, la computación en la nube y la gestión de proyectos. Sin embargo, también ha puesto de manifiesto áreas que requieren atención y mejora. A continuación, se presentan las principales conclusiones y recomendaciones para el trabajo futuro, divididas en dos secciones: mejoras en el sistema \gls{backend} y \gls{frontend} y mejoras en la infraestructura del sistema, incluyendo la gestión de contenedores \gls{docker} y el despliegue en la nube:
+
+\begin{itemize}
+    \item \textbf{Mejoras en el backend:}
+    \begin{itemize}
+        \item Añadir imágenes a las reseñas.
+        \item Incorporar nuevos tipos de orígenes de datos para extraer eventos, recomendaciones o lugares de interés.
+        \item Mejorar la gestión de usuarios, incluyendo el registro, el cambio de contraseña y la administración de usuarios administradores.
+        \item Optimizar los procesos de reserva y los mensajes de correo electrónico, haciéndolos más profesionales e incluyendo facturas en PDF.
+        \item Implementar una mejor gestión de errores y excepciones para mejorar la experiencia del usuario y la seguridad del sistema.
+        \item Incorporar orígenes de datos para poder importar eventos, dado que actualmente no se ha encontrado una fuente de datos que permita la importación de eventos de forma automática.
+        \item Mejorar el rendimiento del sistema, optimizando las consultas a la base de datos y el uso de caché para reducir la carga en el servidor y mejorar los tiempos de respuesta.
+    \end{itemize}
+
+    \item \textbf{Mejoras en el frontend:}
+    \begin{itemize}
+        \item Añadir filtros para eventos o lugares de interés por tipo, fecha o distancia.
+        \item Incluir funcionalidades de cambio de contraseña y creación de nuevos usuarios administradores.
+        \item Añadir filtros en la pantalla de gestión de reservas y en la vista de reservas de cada usuario.
+        \item Incorporar un sistema de notificaciones para avisar al usuario de cambios en su reserva o en su cuenta en la propia plataforma.
+        \item Mejorar la interfaz de usuario para hacerla más atractiva, accesible y fácil de usar, cumpliendo con las normas de accesibilidad y usabilidad web.
+        \item Evaluar con detenimiento el \gls{seo}~\cite{ologunebi2023seo}, mejorando el rendimiento de la página para mayor posicionamiento posicionamiento y usabilidad en la aplicación, realizando pruebas con usuarios reales y con herramientas de análisis estudiadas, para identificar áreas de mejora.
+        \item Adaptar la aplicación a dispositivos móviles, asegurando que todas las funcionalidades sean accesibles y usables en pantallas pequeñas, consiguiendo generar una aplicación \gls{pwa}~\cite{fernandez2023pwa} funcional.
+        \item Realizar pruebas de usabilidad con usuarios reales para identificar áreas de mejora en la experiencia de usuario y la interfaz.
+    \end{itemize}
+\end{itemize}
+
+
+Por otro lado, se valoró en el estudio del estado del arte realizar el despliegue en una plataforma en la nube, pero dado que la plataforma todavía debe ser revisada por el cliente se ha decidido no realizarlo hasta que el sistema esté validado y se pueda realizar un despliegue en producción. En el futuro se puede valorar la posibilidad de realizar un despliegue en una plataforma en la nube como \gls{aws} o Google Cloud. Se deberá implantar los ficheros de \gls{kubernetes} ya generados y adaptarlos a la plataforma de nube seleccionada o utilizar una solución común, usando tecnologías como Terraform (la cual se vio durante el desarrollo del Máster \gls{twcam}) y regenerar las imágenes Docker con los últimos cambios, para posteriormente realizar un despliegue en la nube. Esto permitiría una mayor escalabilidad y flexibilidad del sistema, así como una mejor gestión de los recursos y una mayor seguridad. En este punto también se generarán los certificados para exponer tanto el \gls{backend} como el \gls{frontend} mediante el protocolo \gls{https}.

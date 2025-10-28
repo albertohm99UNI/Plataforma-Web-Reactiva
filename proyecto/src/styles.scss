@@ -1,0 +1,161 @@
+
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css"; 
+
+
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+$background-pale: #ffe5b4; 
+$primary-color-dark: #995d03;
+$primary-color: #cc7a04; 
+$accent-color: #ffae42; 
+$background-color: #fff8e7; 
+$text-color: #4a2d00; 
+
+.container {
+  margin: 40px;
+  display: flex;
+  
+}
+
+.margin_20 {
+  margin: 20px;
+}
+
+.flexExpand {
+  flex: 1 1 auto;
+}
+
+.resaltar {
+  background-color: $background-pale;
+  border: 1px solid $primary-color-dark;
+  overflow: hidden;
+  transform: scale(1.05);
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+#backButton {
+  margin-top: 50px;
+  left: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgba(128, 128, 128, 0.718);
+  font-size: 20px;
+}
+
+#backButton:hover {
+  color: #995d03;
+}
+html,
+body {
+  height: 100%;
+}
+
+mat-card-title.mat-mdc-card-title {
+  font-family: 'Viner Hand ITC', bold;
+}
+mat-card-subtitle.mat-mdc-card-subtitle {
+  font-family: 'Viner Hand ITC', bold;
+}
+
+
+@font-face {
+  font-family: 'Viner Hand ITC';
+  src: url('./app/assets/fonts/VINERITC.TTF') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+.session-expired-snackbar {
+  color: #995d03;
+  background-color: #f7f7f7;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+mat-sidenav-container {
+  flex: 1 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-sidenav-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+}

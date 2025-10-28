@@ -1,0 +1,202 @@
+
+.reservas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  box-sizing: border-box;
+  margin: auto;
+  width: 100%;
+
+}
+
+
+
+/* Card styles */
+.reservas-card,
+.weather-card,
+.tarifas-card, .mis-reservas-card {
+  display: flex;
+  flex-direction: column;
+  
+padding: auto;
+align-items: flex-start;
+justify-content: center; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; 
+}
+
+.header-icon {
+  font-size: 36px;
+  color: #995d03;
+  margin-right: 8px;
+}
+
+/* Card title styles */
+mat-card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #995d03;
+}
+mat-card-title p {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000000;
+}
+.remarcar{
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #000000;
+}
+.prevision
+{
+  padding: 2%;
+  
+  border-radius: 40px;
+}
+/* Text styles */
+mat-card-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon {
+  font-size: 20px;
+  color: #995d03;
+  margin-right: 10px;
+}
+
+.contact-info {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Divider styling */
+mat-divider {
+  margin: 10px 0;
+}
+
+/* Calendar control buttons */
+.calendar-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #995d03;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #dabe95;
+}
+
+/* Form fields styling */
+mat-form-field {
+  width: 100%; /* Full width for form fields */
+  margin-bottom: 20px;
+}
+
+/* Specific weather-info styles */
+.weather-info {
+  display: grid;
+  align-items: flex-start;
+  margin: auto;
+}
+
+.weather-icon {
+  margin-right: 10px;
+}
+.mat-button{
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.mat-button:hover {
+  background-color: #995d03;
+}
+a {
+  text-decoration: none;
+}
+.cal-disabled {
+  background-color: #eee;
+  pointer-events: none;
+}
+.weather-text
+  {
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+  }
+  
+
+@media (max-width: 1024px) {
+  .reservas-container {
+    padding: 10px;
+  }
+
+  .reservas-card,
+  .weather-card,
+  .tarifas-card {
+    width: 100%;
+    margin: 10px 0;
+    margin-bottom: 20px; 
+  }
+
+  .calendar-controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  
+}
+
+/* Responsive: Large devices (desktops) */
+@media (min-width: 1025px) {
+  .reservas-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  
+  
+  .calendar-controls {
+    flex-direction: column;
+    align-items: center;
+  
+  }
+  .reservas-card,
+  .weather-card,
+  .tarifas-card {
+    width: 22%; /* Cuatro columnas para pantallas grandes */
+    margin: 10px;
+    margin-bottom: 20px; /* Espacio entre las tarjetas */
+  }
+  
+ 
+  
+  
+ 
+}

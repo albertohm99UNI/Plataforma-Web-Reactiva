@@ -1,0 +1,68 @@
+# Compiled class file
+*.class
+**/target
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+# Compiled output
+/backend/despliegue/data
+/tmp
+/out-tsc
+/proyecto/dist
+# Dependencies
+**/node_modules
+
+# Angular specific files
+.angular
+.angular-cli.json
+.angular.json
+
+# IDEs and editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+.vscode/
+*.code-workspace
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+*.log
+*.gz
+*.zip
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# System files
+*.swp
+*.swo
+*.mp4
+main.*
+*.cls

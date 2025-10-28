@@ -1,0 +1,106 @@
+<mxfile host="65bd71144e">
+    <diagram name="Flowchart" id="0">
+        <mxGraphModel dx="722" dy="1653" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Frontend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=lightblue;" parent="1" vertex="1">
+                    <mxGeometry x="230" y="-140" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="1oWr3lsc322DCmLZwGiQ-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="60" as="sourcePoint"/>
+                        <mxPoint x="534" y="170" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="390" y="180"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="LCDK5ItAgccOS6n3zgfJ-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="3" target="LCDK5ItAgccOS6n3zgfJ-16" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Backend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=lightgray;" parent="1" vertex="1">
+                    <mxGeometry x="230" y="10" width="140" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Microservicio: Extracción de imágenes API Instagram" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+                    <mxGeometry x="414" y="150" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Microservicio: Scraping de datos ayuntamientos" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+                    <mxGeometry x="570" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Microservicio: Scraping Datos del tiempo" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+                    <mxGeometry x="384" y="-70" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Base de datos de reservas" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=yellow;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="40" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Base de datos documental temporal" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=yellow;" parent="1" vertex="1">
+                    <mxGeometry x="444" y="250" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Envío de correos de confirmación" style="rounded=0;whiteSpace=wrap;html=1;fillColor=green;" parent="1" vertex="1">
+                    <mxGeometry x="10" y="150" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="3" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="3" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="470" y="60"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="7" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="4" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="1oWr3lsc322DCmLZwGiQ-16" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.313;exitY=0.035;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.617;entryY=0.987;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="9" target="3" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="340" as="sourcePoint"/>
+                        <mxPoint x="440" y="290" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="320" y="253"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="1oWr3lsc322DCmLZwGiQ-18" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="340" as="sourcePoint"/>
+                        <mxPoint x="280" y="10" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="1oWr3lsc322DCmLZwGiQ-24" value="Información de la casa:&lt;div&gt;- Imágenes y videos&lt;/div&gt;&lt;div&gt;- Descripcción&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="94" y="-250" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="1oWr3lsc322DCmLZwGiQ-25" value="Recomendaciones&lt;div&gt;- Gastronomia&lt;/div&gt;&lt;div&gt;- Sitios de interes&lt;/div&gt;&lt;div&gt;- Actividades y rutas&lt;/div&gt;&lt;div&gt;- Fiestas patronales&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="254" y="-250" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="1oWr3lsc322DCmLZwGiQ-26" value="Reservas&lt;div&gt;- Calendario de disponibilidad&lt;/div&gt;&lt;div&gt;- Climatologia&lt;/div&gt;&lt;div&gt;- Tarifas&lt;/div&gt;&lt;div&gt;- Pago&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="414" y="-250" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="1oWr3lsc322DCmLZwGiQ-42" value="Localización" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="574" y="-250" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="1oWr3lsc322DCmLZwGiQ-45" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="7" target="3" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="510" y="140" as="sourcePoint"/>
+                        <mxPoint x="560" y="90" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="LCDK5ItAgccOS6n3zgfJ-16" value="Microservicio: Extracción de rutas API Aplicación de rutas" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+                    <mxGeometry x="570" y="70" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="LCDK5ItAgccOS6n3zgfJ-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0.125;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="LCDK5ItAgccOS6n3zgfJ-16" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="670" y="230"/>
+                            <mxPoint x="514" y="230"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

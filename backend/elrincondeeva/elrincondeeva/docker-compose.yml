@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: gestion
+    ports:
+      - "5432:5432"  # Cambié a 5432 en el contenedor para compatibilidad
+    restart: always
+    networks:
+      - app-network  # Red común
+
+  gestion-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: r2dbc:postgresql://postgres:5432/gestion
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network  # Red común
+
+networks:
+  app-network:  # Definición de red compartida

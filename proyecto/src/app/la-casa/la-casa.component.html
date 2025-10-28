@@ -1,0 +1,132 @@
+<div class="house-container">
+  <mat-card class="house-card">
+    <mat-card-header>
+      <mat-card-title>La Casa</mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <mat-card-subtitle>Me presento</mat-card-subtitle>
+      <div class="video">
+        <video *ngIf="videoUrl"  class="house-tour-video" [src]="videoUrl" controls controlslist preload="auto">
+          Tu navegador no soporta la reproducción de video.
+      </video>
+      
+      </div>
+      
+      <div class="carousel-container">
+        <button class="carousel-button prev" (click)="prevSlide()">
+          &#10094;
+        </button>
+        <div class="carousel-slides">
+          <div
+            class="slide"
+            *ngFor="let slide of slides; let i = index"
+          
+  [ngStyle]="{
+    transform: getTransformStyle(),
+    flex: getFlexStyle()
+  }"
+>
+
+            <img [src]="slide.mediaurl" [alt]="slide.caption" />
+          </div>
+        </div>
+        <button class="carousel-button next" (click)="nextSlide()">
+          &#10095;
+        </button>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <p>
+        La casa cuenta con un total de <strong>cuatro habitaciones</strong>,
+        tres dobles y una individual. Baño completo y cocina totalmente equipada
+        (lavavajillas, microondas). Además cuenta con un paellero para disfrutar
+        de la cocina, con todo lo necesario para hacer brasas, paellas y una
+        cocina de gas de cinco fuegos y horno de gas (medidas).
+      </p>
+
+      <mat-divider></mat-divider>
+
+      <p>
+        Su bonito jardín de <strong>césped artificial</strong> rodeando la
+        piscina y una zona de césped natural. Nuestro preciado manzano de más de
+        50 años que sigue regalándonos su sombra y sus deliciosas manzanas.
+      </p>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-subtitle>Detalles de las Habitaciones</mat-card-subtitle>
+      <p>
+        Las habitaciones todas ellas equipadas con ventilador de techo y
+        radiadores. Una de ellas cuenta también con aire acondicionado. En el
+        salón, chimenea, ventilador de techo y aire acondicionado. En el baño,
+        radiador y secador de pelo.
+      </p>
+
+      <mat-card-subtitle>Servicios y Equipamiento</mat-card-subtitle>
+
+      <ul class="sin-puntos">
+  <li>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px"><path d="M5.361 6.625a6.75 6.75 0 0 0 7.413 6.721 6.93 6.93 0 0 0 6.087-6.988V2.125a1.5 1.5 0 0 0-2.4-1.2l-1.8 1.35h.9L13.461.7c-.8-.6-1.9-.6-2.7 0l-2.1 1.575h.9l-1.8-1.35a1.5 1.5 0 0 0-2.4 1.2zm1.5 0v-4.5l1.8 1.35c.267.2.633.2.9 0l2.1-1.575a.75.75 0 0 1 .9 0l2.1 1.575c.267.2.633.2.9 0l1.8-1.35V6.37a5.43 5.43 0 0 1-4.754 5.486 5.25 5.25 0 0 1-5.746-5.23zm4.5 6v10.5a.75.75 0 0 0 1.5 0v-10.5a.75.75 0 0 0-1.5 0m-5.359 3.811c1.473.285 2.458 1.077 2.374 1.51-.084.432-1.292.801-2.765.516-1.473-.284-2.458-1.076-2.374-1.51.084-.432 1.292-.8 2.765-.516m.285-1.473c-2.179-.42-4.233.206-4.523 1.705s1.383 2.846 3.562 3.267 4.233-.205 4.523-1.705-1.383-2.846-3.562-3.267m14.699 2.09c.084.434-.9 1.226-2.374 1.51-1.473.285-2.681-.084-2.765-.516-.084-.433.9-1.226 2.374-1.51 1.473-.285 2.681.084 2.765.517zm1.473-.284c-.29-1.5-2.344-2.126-4.523-1.705s-3.851 1.767-3.562 3.267 2.344 2.126 4.523 1.705 3.852-1.767 3.562-3.267"></path></svg>
+    &nbsp;<b>Exterior</b>
+    <ul class="sin-puntos">
+      <li><mat-icon>check</mat-icon> Jardín</li>
+      <li><mat-icon>check</mat-icon> Piscina</li>
+      <li><mat-icon>check</mat-icon> Terraza</li>
+      <li><mat-icon>check</mat-icon> Zona de aparcamiento</li>
+      <li><mat-icon>check</mat-icon> Zona de juegos (baloncesto-tenis de mesa)</li>
+    </ul>
+  </li>
+  
+  <li>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px"><path d="M2.75 12h18.5c.69 0 1.25.56 1.25 1.25V18l.75-.75H.75l.75.75v-4.75c0-.69.56-1.25 1.25-1.25m0-1.5A2.75 2.75 0 0 0 0 13.25V18c0 .414.336.75.75.75h22.5A.75.75 0 0 0 24 18v-4.75a2.75 2.75 0 0 0-2.75-2.75zM0 18v3a.75.75 0 0 0 1.5 0v-3A.75.75 0 0 0 0 18m22.5 0v3a.75.75 0 0 0 1.5 0v-3a.75.75 0 0 0-1.5 0m-.75-6.75V4.5a2.25 2.25 0 0 0-2.25-2.25h-15A2.25 2.25 0 0 0 2.25 4.5v6.75a.75.75 0 0 0 1.5 0V4.5a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 .75.75v6.75a.75.75 0 0 0 1.5 0m-13.25-3h7a.25.25 0 0 1 .25.25v2.75l.75-.75h-9l.75.75V8.5a.25.25 0 0 1 .25-.25m0-1.5A1.75 1.75 0 0 0 6.75 8.5v2.75c0 .414.336.75.75.75h9a.75.75 0 0 0 .75-.75V8.5a1.75 1.75 0 0 0-1.75-1.75z"></path></svg>&nbsp;<b>Interior</b>
+    <ul class="sin-puntos">
+      <li><mat-icon>check</mat-icon> Aire acondicionado en salón-comedor y habitación principal</li>
+      <li><mat-icon>check</mat-icon> Calefacción: radiadores eléctricos en todas las habitaciones y toallero eléctrico en el baño</li>
+      <li><mat-icon>check</mat-icon> Ventiladores de techo en todas las estancias</li>
+      <li><mat-icon>check</mat-icon> Lavadora</li>
+      <li><mat-icon>check</mat-icon> Lavavajillas</li>
+      <li><mat-icon>check</mat-icon> Secadora</li>
+      <li><mat-icon>check</mat-icon> Microondas</li>
+      <li><mat-icon>check</mat-icon> Colección de juegos</li>
+      <li><mat-icon>check</mat-icon> TV Smart</li>
+    </ul>
+  </li>
+   <li>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px"><path d="M12.75 15h10.5l-.74-.873-.664 3.986a5.25 5.25 0 0 1-5.179 4.387H7.333a5.25 5.25 0 0 1-5.18-4.387l-.663-3.986L.75 15h4.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0-.74.873l.664 3.986A6.75 6.75 0 0 0 7.334 24h9.333a6.75 6.75 0 0 0 6.659-5.64l.664-3.987a.75.75 0 0 0-.74-.873h-10.5a.75.75 0 0 0 0 1.5M12 19.5H6v-5.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75zm0 1.5a1.5 1.5 0 0 0 1.5-1.5v-5.25A2.25 2.25 0 0 0 11.25 12h-4.5a2.25 2.25 0 0 0-2.25 2.25v5.25A1.5 1.5 0 0 0 6 21zm4.5-17.25a2.25 2.25 0 0 1 4.5 0v10.5a.75.75 0 0 0 1.5 0V3.75a3.75 3.75 0 1 0-7.5 0 .75.75 0 0 0 1.5 0m-3 3a2.25 2.25 0 0 1 4.5 0l.75-.75h-6zm-1.5 0c0 .414.336.75.75.75h6a.75.75 0 0 0 .75-.75 3.75 3.75 0 1 0-7.5 0"></path></svg>
+    &nbsp;<b>Baño</b>
+    <ul class="sin-puntos">
+   
+        <li><mat-icon>check</mat-icon> Papel higiénico</li>
+        <li><mat-icon>check</mat-icon> Toallas</li>
+        <li><mat-icon>check</mat-icon> Bidé</li>
+        <li><mat-icon>check</mat-icon> Baño privado</li>
+        <li><mat-icon>check</mat-icon> WC</li>
+        <li><mat-icon>check</mat-icon> Artículos de aseo gratis</li>
+        <li><mat-icon>check</mat-icon> Secador de pelo</li>
+        <li><mat-icon>check</mat-icon> Ducha</li>
+  
+    </ul>
+  </li>
+  <li>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px"><path d="M2.25 2.25h19.5L21 1.5v21l.75-.75H2.25l.75.75v-21zm0-1.5a.75.75 0 0 0-.75.75v21c0 .414.336.75.75.75h19.5a.75.75 0 0 0 .75-.75v-21a.75.75 0 0 0-.75-.75zm-1.5 1.5h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5m0 21h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5M18 15v3.539a.21.21 0 0 1-.211.211H6.211A.21.21 0 0 1 6 18.539v-7.078a.21.21 0 0 1 .211-.211h11.578c.116 0 .211.095.211.211zm1.5 0v-3.539a1.71 1.71 0 0 0-1.711-1.711H6.211A1.71 1.71 0 0 0 4.5 11.461v7.078a1.71 1.71 0 0 0 1.711 1.711h11.578a1.71 1.71 0 0 0 1.711-1.711zM9 14.25h6a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5M5.25 4.875a.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5 1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5m3 0a.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5 1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5m-6 3.375h19.5a.75.75 0 0 0 0-1.5H2.25a.75.75 0 0 0 0 1.5m11.25-3h5.25a.75.75 0 0 0 0-1.5H13.5a.75.75 0 0 0 0 1.5"></path></svg> 
+    &nbsp;<b>Cocina</b>   <ul class="sin-puntos">
+      <li><mat-icon>check</mat-icon> Horno + encimera a gas (5 fuegos)</li>
+      <li><mat-icon>check</mat-icon> Paellero a leña para paellas y asar carne</li>
+    </ul>
+  </li>
+</ul>
+
+<mat-card-subtitle>Condiciones</mat-card-subtitle>
+<p>
+  Para garantizar la estancia, se deberá abonar una fianza de 150 euros, que será reembolsada al finalizar la estancia, siempre que no se hayan producido desperfectos en la propiedad.
+</p>
+<p>
+  El check-in podrá acordarse con el gestor de la casa, para asegurar una llegada cómoda y sin contratiempos. Por otro lado, el check-out debe realizarse antes de las 17:00 h del día de salida.
+</p>
+
+    </mat-card-content>
+  </mat-card>
+</div>

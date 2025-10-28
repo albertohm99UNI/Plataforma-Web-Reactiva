@@ -1,0 +1,12 @@
+ .star-rating {
+        display: flex;
+        gap: 4px;
+        cursor: pointer;
+      }
+      .selected {
+        color: #995d03;
+      }
+      mat-icon {
+        font-size: 20px;
+        margin-right: 2px;
+      }

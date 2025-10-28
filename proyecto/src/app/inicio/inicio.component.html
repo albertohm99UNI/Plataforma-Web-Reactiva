@@ -1,0 +1,226 @@
+<div class="container">
+  <!-- Card de bienvenida -->
+  <mat-card class="welcome-card">
+    <mat-card-header>
+      <mat-card-title>¡Bienvenidos a El Rincón de Eva!</mat-card-title>
+      <mat-card-subtitle
+        >Un lugar para desconectar y disfrutar</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>
+        La casa <strong>"El Rincón de Eva"</strong> está ubicada en la población
+        de Tuéjar, provincia de Valencia. Reserva de la Biosfera Unesco. Está
+        situada fuera del casco urbano, lo que permite disfrutar de una total
+        intimidad, pero a tan solo cinco minutos del pueblo y muy cerca de las
+        zonas recreativas.
+      </p>
+      <p>
+        En <strong>El Rincón de Eva</strong> podrás desconectar de tu estrés
+        diario, relajarte y disfrutar de la paz y tranquilidad del lugar. Su
+        casa acogedora y su maravilloso jardín te invitan a disfrutar del sol y
+        la piscina. Bonitos atardeceres tumbados en las hamacas y enamorarte del
+        cielo “Tuejano” repleto de estrellas al anochecer.
+      </p>
+      <mat-divider></mat-divider>
+      <blockquote class="quote">
+        "Los otoños con sus colores maravillosos y unos inviernos que, aunque
+        fríos, también tienen sus encantos."
+      </blockquote>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button class="reservarahora" [routerLink]="'/reservas'">
+        Reservar Ahora
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="review-card">
+    <mat-card-header>
+
+      <mat-card-title>Reseñas de Usuarios</mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card class="review-item">
+  <mat-card-content>
+
+    <!-- Mostrar mensaje si no hay reseñas -->
+    <div *ngIf="!reviews || reviews.length === 0" class="no-reviews-message">
+      <p><strong>Haz tu reserva con nosotros y serás el primero en contarnos qué te ha parecido nuestra casa.</strong></p>
+    </div>
+
+    <!-- Mostrar reseñas si existen -->
+    <div *ngIf="reviews && reviews.length > 0">
+      <div *ngFor="let review of reviews | slice:0:visibleReviewsCount; let i = index" class="review-block">
+        <!-- Resumen principal -->
+        <mat-card class="review-summary" (click)="toggleExpanded(i)">
+          <div>
+            <div class="star-rating">
+              <ng-container *ngFor="let star of getStars(review.rate)">
+                <mat-icon class="filled" *ngIf="star==='filled'">star</mat-icon>
+                <mat-icon *ngIf="star === 'empty'">star_outline</mat-icon>
+              </ng-container>
+            </div>
+          </div>
+          <p class="review-text">{{ review.review }}</p>
+          <p>{{ review.creationDate }}</p>
+        </mat-card>
+
+        <!-- Detalles adicionales -->
+        <div *ngIf="expandedIndex === i" class="detailed-rates">
+          <div class="rate-detail">
+            <p><strong>Limpieza:</strong></p>
+            <div class="star-rating">
+              <ng-container *ngFor="let star of getStars(review.rateLimpieza)">
+                <mat-icon class="filled" *ngIf="star==='filled'">star</mat-icon>
+                <mat-icon *ngIf="star === 'empty'">star_outline</mat-icon>
+              </ng-container>
+            </div>
+          </div>
+          <div class="rate-detail">
+            <p><strong>Ubicación:</strong></p>
+            <div class="star-rating">
+              <ng-container *ngFor="let star of getStars(review.rateUbicacion)">
+                <mat-icon class="filled" *ngIf="star==='filled'">star</mat-icon>
+                <mat-icon *ngIf="star === 'empty'">star_outline</mat-icon>
+              </ng-container>
+            </div>
+          </div>
+          <div class="rate-detail">
+            <p><strong>Servicios:</strong></p>
+            <div class="star-rating">
+              <ng-container *ngFor="let star of getStars(review.rateServicios)">
+                <mat-icon class="filled" *ngIf="star==='filled'">star</mat-icon>
+                <mat-icon *ngIf="star === 'empty'">star_outline</mat-icon>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón para mostrar más -->
+      <div *ngIf="visibleReviewsCount < reviews.length">
+        <button mat-button (click)="loadMoreReviews()">Mostrar más</button>
+      </div>
+
+      <!-- Botón para ocultar -->
+      <div *ngIf="visibleReviewsCount > 3">
+        <button mat-button (click)="hideReviews()">Ocultar</button>
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>
+
+    
+    <mat-divider *ngIf="isClientRole"></mat-divider>
+
+    <mat-card-content *ngIf="isClientRole">
+      <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()">
+        <div><h3>¡Cuentanos tu experiencia!</h3></div>
+        <mat-form-field appearance="fill">
+          
+          <mat-label>Tu reseña</mat-label>
+          <textarea matInput formControlName="review"></textarea>
+          <mat-error *ngIf="reviewForm.get('review')?.hasError('required')">
+            Reseña es requerida
+          </mat-error>
+          <mat-error *ngIf="reviewForm.get('review')?.hasError('minlength')">
+            La reseña debe tener al menos 10 caracteres
+          </mat-error>
+        </mat-form-field>
+    
+        <div>
+          <label>Calificación General:</label>
+          <app-star-rating
+            [rating]="reviewForm.get('rate')?.value"
+            (ratingChange)="reviewForm.get('rate')?.setValue($event)"
+          ></app-star-rating>
+        </div>
+    
+        <div>
+          <label>Ubicación:</label>
+          <app-star-rating
+            [rating]="reviewForm.get('rateUbicacion')?.value"
+            (ratingChange)="reviewForm.get('rateUbicacion')?.setValue($event)"
+          ></app-star-rating>
+        </div>
+    
+        <div>
+          <label>Servicios:</label>
+          <app-star-rating
+            [rating]="reviewForm.get('rateServicios')?.value"
+            (ratingChange)="reviewForm.get('rateServicios')?.setValue($event)"
+          ></app-star-rating>
+        </div>
+    
+        <div>
+          <label>Limpieza:</label>
+          <app-star-rating
+            [rating]="reviewForm.get('rateLimpieza')?.value"
+            (ratingChange)="reviewForm.get('rateLimpieza')?.setValue($event)"
+          ></app-star-rating>
+        </div>
+    
+        <button class="reservarahora" mat-icon-button type="submit" color="accent">
+         <mat-icon>send</mat-icon>
+        </button>
+      </form>
+    </mat-card-content>
+    
+    <mat-divider></mat-divider>
+  <!-- Card de contacto -->
+  <div class="contact-form-container">
+    <mat-card class="contact-card">
+      <mat-card-header>
+        <mat-icon class="header-icon" aria-hidden="false">email</mat-icon>
+        <mat-card-title>Ponte en contacto conmigo</mat-card-title>
+      </mat-card-header>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content>
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm)">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
+              Nombre es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" />
+            <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+              Email es requerido
+            </mat-error>
+            <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+              Introduzca un email válido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Mensaje</mat-label>
+            <textarea matInput formControlName="message"></textarea>
+            <mat-error *ngIf="contactForm.get('message')?.hasError('required')">
+              Mensaje es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <button class="reservarahora" mat-icon-button type="submit">
+            <mat-icon>send</mat-icon>
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+    
+    
+  </mat-card>
+</div>

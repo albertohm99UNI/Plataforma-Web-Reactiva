@@ -1,0 +1,170 @@
+<!-- recomendaciones.component.html -->
+<div class="recomendaciones-container">
+  <mat-card class="recomendaciones-header-card">
+    <mat-card-header>
+      
+      <mat-card-title>Recomendaciones</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+  </mat-card>
+
+  <div class="subsections-container">
+    <!-- Gastronomía -->
+    <mat-card class="subsection-card">
+      <mat-card-header>
+        <mat-card-title>Gastronomía</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <section>
+          <mat-card>
+    
+            <mat-card-content>
+              <p>Tuéjar cuenta con una gastronomía típica de la zona de montaña de inviernos fríos. Pueblo ganadero, con carnes y embutidos excelentes y con una huerta con productos de gran calidad que ayuda a ofrecer ricos platos típicos.</p>
+            </mat-card-content>
+          </mat-card>
+        
+          <div class="recetas-container">
+            <mat-card class="receta-card">
+              <mat-card-title>Gazpachos</mat-card-title>
+              <mat-card-content>Una especialidad montañesa con ingredientes de la zona.</mat-card-content>
+            </mat-card>
+        
+            <mat-card class="receta-card">
+              <mat-card-title>Olla de Pueblo</mat-card-title>
+              <mat-card-content>Un guiso tradicional que representa la esencia de la cocina local.</mat-card-content>
+            </mat-card>
+        
+            <mat-card class="receta-card">
+              <mat-card-title>Morteruelo</mat-card-title>
+              <mat-card-content>Plato típico de la región, ideal para los días fríos.</mat-card-content>
+            </mat-card>
+        
+            <mat-card class="receta-card">
+              <mat-card-title>Tortas de Tajá</mat-card-title>
+              <mat-card-content>Una delicia tradicional preparada con productos frescos de la huerta.</mat-card-content>
+            </mat-card>
+        
+            <mat-card class="receta-card">
+              <mat-card-title>Magdalenas</mat-card-title>
+              <mat-card-content>Recién hechas, ideales para acompañar el café.</mat-card-content>
+            </mat-card>
+        
+            <mat-card class="receta-card">
+              <mat-card-title>Ensaina</mat-card-title>
+              <mat-card-content>Un postre tradicional, símbolo de la panadería local.</mat-card-content>
+            </mat-card>
+        
+            <mat-card class="receta-card">
+              <mat-card-title>Esparteros</mat-card-title>
+              <mat-card-content>Dulces típicos que reflejan las tradiciones culinarias del pueblo.</mat-card-content>
+            </mat-card>
+        
+            <mat-card class="receta-card">
+              <mat-card-title>Tortas de Pasas y Nueces</mat-card-title>
+              <mat-card-content>Perfectas para los amantes de los frutos secos.</mat-card-content>
+            </mat-card>
+        
+            <mat-card class="receta-card">
+              <mat-card-title>Muégados</mat-card-title>
+              <mat-card-content>Dulce estrella de Tuéjar, hecho con harina, huevos y miel.</mat-card-content>
+            </mat-card>
+          </div>
+        </section>
+        
+        <!-- app.component.html -->
+        <div class="carousel-container">
+          <button class="carousel-button prev" (click)="prevSlideComida()">
+            &#10094;
+          </button>
+          <div class="carousel-slides">
+            <div
+  class="slide"
+  *ngFor="let slide of slidesComida; let i = index"
+  [style.transform]="'translateX(-' + currentSlideComida * (100 / imagesPerSlideComida) + '%)'"
+  [style.flex]="'0 0 ' + 100 / imagesPerSlideComida + '%'"
+>
+  <ng-container *ngIf="slide.mediatype === 'IMAGE'; else videoTemplate">
+    <a [href]="slide.mediaurl" target="_blank">
+      <img [src]="slide.mediaurl" [alt]="slide.caption" />
+    </a>
+   
+  </ng-container>
+
+  <ng-template #videoTemplate>
+    <a [href]="slide.mediaurl" target="_blank">
+      <video>
+      <source [src]="slide.mediaurl" type="video/mp4" />
+      Tu navegador no soporta la reproducción de vídeo.
+    </video>
+    </a>
+  </ng-template>
+</div>
+
+            
+          </div>
+          <button class="carousel-button next" (click)="nextSlideComida()">
+            &#10095;
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+   
+    <!-- Fiestas -->
+    <mat-card class="subsection-card">
+      <mat-card-header>
+        <mat-card-title>Fiestas</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Tuéjar cuenta durante todo el año con festividades locales:</p>
+        <ul>
+          <li>
+            <strong>Enero:</strong> San Antón. La noche víspera del 17 de Enero.
+          </li>
+          <li><strong>Febrero:</strong> Carnavales</li>
+          <li>
+            <strong>Marzo:</strong> Fallas (se celebran normalmente la semana
+            después de las Fallas de Valencia)
+          </li>
+          <li>
+            <strong>Abril:</strong> Los Mayos. La noche del 30 de abril. Se da
+            la bienvenida a la primavera y se despide el invierno.
+          </li>
+          <li>
+            <strong>Agosto:</strong> Las fiestas mayores y fiestas gordas,
+            dedicadas a la patrona del pueblo La Purísima. Primeras semanas de
+            agosto. Llenas de actos tradicionales, actividades para niños y
+            adultos, verbenas, disfraces, y el desfile de coches engalanados.
+          </li>
+          <li>
+            <strong>Diciembre:</strong> La Purísima. El 8 de diciembre. Fiestas
+            dedicadas a la Inmaculada Concepción.
+          </li>
+        </ul>
+
+        <!-- Carousel de imágenes de fiestas -->
+        <div class="carousel-container">
+          <button class="carousel-button prev" (click)="prevSlideFiesta()">
+            &#10094;
+          </button>
+          <div class="carousel-slides">
+            <div
+              class="slide"
+              *ngFor="let slide of slidesFiestas; let i = index"
+              [style.transform]="
+                'translateX(-' +
+                currentSlideFiesta * (100 / imagesPerSlideFiesta) +
+                '%)'
+              "
+              [style.flex]="'0 0 ' + 100 / imagesPerSlideFiesta + '%'"
+            >
+              <a [href]="slide.url"><img [src]="slide.imageString" [alt]="slide.title" /></a>
+            </div>
+          </div>
+          <button class="carousel-button next" (click)="nextSlideFiesta()">
+            &#10095;
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

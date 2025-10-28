@@ -1,0 +1,104 @@
+/* styles.scss o el archivo de estilos correspondiente */
+
+.app-toolbar {
+  position: fixed; /* Fijo en la parte superior */
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #d4c9c0;
+  z-index: 1000; /* Asegúrate de que esté encima de otros contenidos */
+}
+
+app-footer {
+  position: fixed; /* Fijo en la parte superior */
+  top: 95vh;
+  left: 0;
+  right: 0;
+ z-index: 10001;
+}
+
+.menu-button {
+  margin-right: 16px; /* Ajusta el margen según sea necesario */
+}
+
+.menu-principal {
+  font-family: 'Viner Hand ITC';
+}
+
+.usuario {
+  font-family: 'Viner Hand ITC';
+  border-radius: 46%;
+  background-color: #fff8e7;
+ border-style: outset;
+ border-width: 4px;
+ border-color: #995d03;
+  color: #995d03;
+  padding: 2px;
+  font-size: 20px; /* Ajusta el tamaño de la fuente según sea necesario */
+}
+
+
+
+.page-title {
+  flex: 1;
+  color: #995d03;
+}
+
+
+.horizontal-menu {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-family: 'Viner Hand ITC';
+}
+
+.sidenav-container {
+  height: 100vh; 
+}
+
+.sidenav {
+  width: 250px; 
+  position: fixed; 
+  top: 64px; 
+  left: 0;
+  bottom: 0;
+  z-index: 1000; 
+}
+
+a.active {
+  font-weight: bold; /* Opcional: resalta el enlace activo */
+  color: #995d03; /* Cambia el color del enlace activo si lo deseas */
+}
+
+
+mat-sidenav {
+  background: white; /* Ajusta el fondo si es necesario */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Sombra para un mejor efecto visual */
+}
+
+nav {
+width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+mat-toolbar-row {
+  background-color: #d4c9c0; /* Color de fondo del toolbar */
+  color: #995d03; /* Color del texto del toolbar */
+  font-family: 'Viner Hand ITC'; /* Cambia la fuente si es necesario */
+  height: 64px; /* Altura del toolbar */
+}
+
+.contenido {
+  padding-top: 6%; 
+  padding-bottom: 1%;
+  margin-bottom: 8%;
+  margin-top: 2%;
+}
+
+.app-toolbar img {
+  width: 10px; /* Cambia este valor al tamaño deseado */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+
+

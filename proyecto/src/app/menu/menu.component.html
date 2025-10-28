@@ -1,0 +1,131 @@
+<mat-toolbar color="primary" class="app-toolbar">
+  <button
+    mat-icon-button
+    (click)="toggleSidenav()"
+    class="menu-button"
+    *ngIf="isMobile"
+  >
+  
+    <mat-icon>menu</mat-icon>
+   
+ 
+
+  </button>
+
+ 
+
+  <!-- Menú horizontal -->
+  <ng-container *ngIf="!isMobile" class="horizontal-menu-container">
+    <img
+    src="../app/assets/images/logo2.png"
+    alt="Logo"
+      [ngStyle]="{ width: '75px', height: '75px' }"
+  />
+  <span class="page-title"
+    ><img
+      src="../app/assets/images/logo_texto.png"
+      alt="Logo"
+        [ngStyle]="{ width: '225px', height: '55px' }"
+  /></span>
+  <span class="spacer"></span>
+    <nav class="horizontal-menu">
+      <a mat-button routerLink="/inicio" routerLinkActive="active">
+        <mat-icon>home</mat-icon> <b class="menu-principal">Inicio</b>
+      </a>
+      <a mat-button routerLink="/la-casa" routerLinkActive="active">
+        <mat-icon>house</mat-icon> <b class="menu-principal">La Casa</b>
+      </a>
+      <ng-container *ngIf="isAdmin$ | async; else notAdmin">
+        <a mat-button routerLink="/administrador" routerLinkActive="active">
+          <mat-icon>calendar_today</mat-icon> <b class="menu-principal">Gestión</b>
+        </a>
+      </ng-container>
+      <ng-template #notAdmin>
+        <a mat-button routerLink="/reservas" routerLinkActive="active">
+          <mat-icon>calendar_today</mat-icon> <b class="menu-principal">Reservas</b>
+        </a>
+      </ng-template>
+      
+      
+      <a mat-button routerLink="/como-llegar" routerLinkActive="active">
+        <mat-icon>map</mat-icon> <b class="menu-principal">Localizaciones</b>
+      </a>
+      <a mat-button routerLink="/recomendaciones" routerLinkActive="active">
+        <mat-icon>star</mat-icon> <b class="menu-principal">Recomendaciones</b>
+      </a>
+      <a mat-button routerLink="/entorno" routerLinkActive="active">
+        <mat-icon>forest</mat-icon> <b class="menu-principal">Entorno</b>
+      </a>
+      
+    </nav>
+  </ng-container>
+
+  <ng-container *ngIf="!(user$ | async); else loggedIn">
+    <a mat-button routerLink="/login" (click)="loggedIn" routerLinkActive="active">
+      <mat-icon>login</mat-icon> <b class="menu-principal">Iniciar Sesión</b>
+    </a>
+ 
+  </ng-container>
+  <ng-template #loggedIn>
+    
+    <span class="usuario">{{ userName$ | async }}</span>
+
+    <a mat-button routerLink="/login" (click)="logout()" routerLinkActive="active">
+      <mat-icon>logout</mat-icon> <b class="menu-principal">Cerrar Sesión</b>
+    </a>
+    
+  </ng-template>
+</mat-toolbar>
+
+<!-- Sidenav -->
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #sidenav mode="over" position="start" class="sidenav">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/inicio" routerLinkActive="active">
+        <mat-icon>home</mat-icon> <b class="menu-principal">Inicio</b>
+      </a>
+      <a mat-list-item routerLink="/la-casa" routerLinkActive="active">
+        <mat-icon>house</mat-icon> <b class="menu-principal">La Casa</b>
+      </a>
+      <ng-container *ngIf="isAdmin$ | async; else notAdmin">
+        <a  mat-list-item routerLink="/administrador" routerLinkActive="active">
+          <mat-icon>calendar_today</mat-icon> <b class="menu-principal">Gestión</b>
+        </a>
+      </ng-container>
+      <ng-template #notAdmin>
+        <a  mat-list-item routerLink="/reservas" routerLinkActive="active">
+          <mat-icon>calendar_today</mat-icon> <b class="menu-principal">Reservas</b>
+        </a>
+      </ng-template>
+      
+      <a mat-list-item routerLink="/como-llegar" routerLinkActive="active">
+        <mat-icon>map</mat-icon> <b class="menu-principal">Localizaciones</b>
+      </a>
+      <a mat-list-item routerLink="/recomendaciones" routerLinkActive="active">
+        <mat-icon>star</mat-icon> <b class="menu-principal">Recomendaciones</b>
+      </a>
+      <a mat-list-item routerLink="/entorno" routerLinkActive="active">
+        <mat-icon>forest</mat-icon> <b class="menu-principal">Entorno</b>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  
+
+  <mat-sidenav-content>
+   
+    <div class="contenido">
+      <router-outlet></router-outlet>
+      
+    </div>
+    <app-footer></app-footer>
+    
+    
+     
+  </mat-sidenav-content>
+ 
+  
+
+</mat-sidenav-container>
+

@@ -1,0 +1,295 @@
+\section{Código fuente SpringBoot sobre seguridad}
+\label{ap:codigoseguridad}
+
+\begin{longlisting}
+    \caption{Fichero de filtro de autenticación {\tt CustomAuthenticationFilter.java}}
+    \inputminted[firstline=30, lastline=47,fontsize=\scriptsize, breaklines, breakanywhere]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/security/CustomAuthenticationFilter.java}
+    \label{lst:autenticacionfilter}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Fichero de filtro de autorización {\tt CustomAuthorizationFilter.java}}
+    \inputminted[ firstline=33, lastline=82]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/security/CustomAuthorizationFilter.java}
+    \label{lst:autorizacionfilter}
+\end{longlisting}
+
+\section{Código fuente SpringBoot sobre gestión de emails}
+\label{ap:emailservice}
+\begin{longlisting}
+    \caption{Fichero de servicio para enviar emails {\tt EmailService.java}}
+    \inputminted[ firstline=12]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/services/EmailService.java}
+    \label{lst:emailService}
+\end{longlisting}
+
+\section{Código fuente SpringBoot persistencia en el sistema principal}
+\label{ap:persistenciaprincipal}
+\begin{longlisting}
+    \caption{Repositorio de reservas {\tt ReservaRepository.java}}
+    \inputminted[]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/repositories/ReservaRepository.java}
+    \label{lst:reservaRepository}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Clase del dominio {\tt Reserva.java}}
+    \inputminted[]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/domain/Reserva.java}
+    \label{lst:reservaDomain}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Repositorio de reseñas {\tt ReviewRepository.java}}
+    \inputminted[]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/repositories/ReviewRepository.java}
+    \label{lst:reviewRepository}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Clase del dominio {\tt Review.java}}
+    \inputminted[]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/domain/Review.java}
+    \label{lst:reviewDomain}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Repositorio de usuarios {\tt UserRepository.java}}
+    \inputminted[]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/repositories/UserRepository.java}
+    \label{lst:userRepository}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Repositorio de roles {\tt UserRepository.java}}
+    \inputminted[]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/repositories/RoleRepository.java}
+    \label{lst:roleRepository}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Repositorio de relacion roles y usuarios {\tt UserRepository.java}}
+    \inputminted[]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/repositories/RoleUserRepository.java}
+    \label{lst:roleuserRepository}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Clase del dominio {\tt MyUser.java}}
+    \inputminted[]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/domain/MyUser.java}
+    \label{lst:userDomain}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Clase del dominio {\tt UserRole.java}}
+    \inputminted[]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/domain/UserRole.java}
+    \label{lst:roleuserDomain}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Clase del dominio {\tt Role.java}}
+    \inputminted[]{java}{../backend/elrincondeeva/elrincondeeva/src/main/java/es/uv/hemal/elrincondeeva/domain/Role.java}\label{lst:roleDomain}
+\end{longlisting}
+\section{Código fuente SpringBoot scraping en el subsistema de extracción}\label{ap:extraccion}
+\begin{longlisting}
+\caption{Servicio de scraping de sitios web turísticos {\tt ScraperService.java}} \inputminted[firstline=15]{java}{../backend/extraccion/extraccion/src/main/java/es/uv/hemal/extraccion/extraccion/services/ScraperService.java} \label{lst:scraperService} \end{longlisting}
+
+\section{Código fuente SpringBoot gestión de token de Instagram en subsistema de publicaciones}\label{ap:instagramtoken}
+
+\begin{longlisting}
+\caption{Servicio encargado de refrescar el token de acceso a la API de Instagram {\tt InstagramTokenService.java}}
+\inputminted[firstline=6,lastline=30]{java}{../backend/PublicacionesAPI/PublicacionesAPI/src/main/java/es/uv/hemal/elrincondeeva/PublicacionesAPI/services/InstagramTokenService.java}
+\label{lst:refreshToken}
+\end{longlisting}
+
+\section{Código TypeScript del frontend de la aplicación}\label{ap:frontend-typescript}
+\begin{longlisting}
+    \caption{Código del componente \texttt{AdministradorComponent}}
+    \inputminted{typescript}{../proyecto/src/app/administrador/administrador.component.ts}
+    \label{lst:aprobarPagoReserva}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Método \texttt{onSubmitReview} en el componente \texttt{InicioComponent}}
+    \inputminted{typescript}{../proyecto/src/app/inicio/inicio.component.ts}
+    \label{lst:onSubmitReview}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Lógica del componente \texttt{LaCasaComponent}}
+    \inputminted{typescript}{../proyecto/src/app/la-casa/la-casa.component.ts}
+    \label{lst:laCasaComponentTs}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Lógica del componente \texttt{ReservaComponent}}
+    \inputminted{typescript}{../proyecto/src/app/reservas/reservas.component.ts}
+    \label{lst:reservasComponentTs}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Lógica del componente \texttt{ComoLlegarComponent}}
+    \inputminted{typescript}{../proyecto/src/app/como-llegar/como-llegar.component.ts}
+    \label{lst:comoLlegarComponentTs}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Lógica del componente \texttt{RecomendacionesComponent}}
+    \inputminted{typescript}{../proyecto/src/app/recomendaciones/recomendaciones.component.ts}
+    \label{lst:recomendacionesComponentTs}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Lógica del componente \texttt{EntornoComponent}}
+    \inputminted{typescript}{../proyecto/src/app/entorno/entorno.component.ts}
+    \label{lst:entornoComponentTs}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Lógica del componente \texttt{LoginComponent}}
+    \inputminted{typescript}{../proyecto/src/app/login/login.component.ts}
+    \label{lst:loginComponentTs}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Lógica del componente \texttt{RegisterComponent}}
+    \inputminted{typescript}{../proyecto/src/app/register/register.component.ts}
+    \label{lst:registerComponentTs}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Lógica del servicio de autenticación \texttt{AuthService}}
+    \inputminted{typescript}{../proyecto/src/app/services/auth.service.ts}
+    \label{lst:authserviceTs}
+\end{longlisting}
+
+
+
+\section{Código \gls{html} del frontend de la aplicación}
+\label{ap:frontend-html}
+\begin{longlisting}
+    \caption{Tabla de visualización de reservas en \texttt{administrador.component.html}}
+    \inputminted[fontsize=\scriptsize, breaklines, breakanywhere]{html+ng2}{../proyecto/src/app/administrador/administrador.component.html}
+    \label{lst:tablaAdministrador}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Sección de Inicio en \texttt{inicio.component.html}}
+    \inputminted{html+ng2}{../proyecto/src/app/inicio/inicio.component.html}
+    \label{lst:inicioComponentHtml}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Sección de información la casa rural en \texttt{la-casa.component.html}}
+    \inputminted{html+ng2}{../proyecto/src/app/la-casa/la-casa.component.html}
+    \label{lst:laCasaComponentHtml}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Sección de reservas de la casa rural en \texttt{reservas.component.html}}
+    \inputminted[fontsize=\scriptsize, breaklines, breakanywhere]{html+ng2}{../proyecto/src/app/reservas/reservas.component.html}
+    \label{lst:reservasComponentHtml}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Sección como llegar en \texttt{como-llegar.component.html}}
+    \inputminted[fontsize=\scriptsize, breaklines, breakanywhere]{html+ng2}{../proyecto/src/app/como-llegar/como-llegar.component.html}
+    \label{lst:comoLlegarComponentHtml}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Sección de recomendaciones en \texttt{recomendaciones.component.html}}
+    \inputminted{html+ng2}{../proyecto/src/app/recomendaciones/recomendaciones.component.html}
+    \label{lst:recomendacionesComponentHtml}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Sección de entorno en \texttt{entorno.component.html}}
+    \inputminted{html+ng2}{../proyecto/src/app/entorno/entorno.component.html}
+    \label{lst:entornoComponentHtml}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Sección de login en \texttt{login.component.html}}
+    \inputminted[fontsize=\scriptsize, breaklines, breakanywhere]{html+ng2}{../proyecto/src/app/login/login.component.html}
+    \label{lst:loginComponentHtml}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Sección de registro en \texttt{register.component.html}}
+    \inputminted{html+ng2}{../proyecto/src/app/register/register.component.html}
+    \label{lst:registerComponentHtml}
+\end{longlisting}
+
+\section{Ficheros \gls{docker} del backend de la aplicación}
+\label{ap:docker}
+\begin{longlisting}
+    \caption{Dockerfile del backend de la aplicación para la API de extracción web}
+    \inputminted{dockerfile}{../backend/despliegue/extraccion/Dockerfile}
+    \label{lst:dockerfileBackendextraccion}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Dockerfile del backend de la aplicación para la API de publicaciones}
+    \inputminted{dockerfile}{../backend/despliegue/publicacionesapi/Dockerfile}
+    \label{lst:dockerfileBackendpublicaciones}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Dockerfile del backend de la aplicación para la API de tiempo}
+    \inputminted{dockerfile}{../backend/despliegue/tiempo/Dockerfile}
+    \label{lst:dockerfileBackendtiempo}
+\end{longlisting}
+
+
+
+\section{Test unitarios del backend de la aplicación}
+\label{ap:test}
+\begin{longlisting}
+    \caption{Test unitario de la clase \texttt{ReservaService} en \texttt{ReservaServiceTest.java}}
+    \inputminted[firstline=23]{java}{../backend/elrincondeeva/elrincondeeva/src/test/java/es/uv/hemal/elrincondeeva/services/ReservaServiceTest.java}
+    \label{lst:reservaServiceTest}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Test unitario de la clase \texttt{ReviewService} en \texttt{ReviewServiceTest.java}}
+    \inputminted[firstline=27]{java}{../backend/elrincondeeva/elrincondeeva/src/test/java/es/uv/hemal/elrincondeeva/services/ReviewServiceTest.java}
+    \label{lst:reviewServiceTest}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Test unitario de la clase \texttt{UserService} en \texttt{UserServiceTest.java}}
+    \inputminted[firstline=19]{java}{../backend/elrincondeeva/elrincondeeva/src/test/java/es/uv/hemal/elrincondeeva/services/UserServiceTest.java}
+    \label{lst:userServiceTest}
+\end{longlisting}
+
+\begin{longlisting}
+    \caption{Test unitario de la clase \texttt{SignupService} en \texttt{SignupServiceTest.java}}
+    \inputminted[firstline=19]{java}{../backend/elrincondeeva/elrincondeeva/src/test/java/es/uv/hemal/elrincondeeva/services/SignupServiceTest.java}
+    \label{lst:signupServiceTest}
+\end{longlisting}
+
+
+
+
+\begin{longlisting}
+    \caption{Test unitario de la clase \texttt{MediaService} en \texttt{MediaServiceTest.java}}
+    \inputminted[firstline=13]{java}{../backend/PublicacionesAPI/PublicacionesAPI/src/test/java/es/uv/hemal/elrincondeeva/PublicacionesAPI/services/MediaServiceTest.java}
+    \label{lst:mediaServiceTest}
+\end{longlisting}
+
+
+
+
+
+\begin{longlisting}
+    \caption{Test unitario de la clase \texttt{WeatherService} en \texttt{WeatherServiceTest.java}}
+    \inputminted[firstline=17]{java}{../backend/tiempo/tiempo/src/test/java/hemal/uv/es/tiempo/services/WeatherServiceTest.java}
+    \label{lst:weatherServiceTest}
+\end{longlisting}
+
+
+\begin{longlisting}
+    \caption{Test unitario de la clase \texttt{RecursoService} en \texttt{RecursoServiceTest.java}}
+    \inputminted[firstline=16]{java}{../backend/extraccion/extraccion/src/test/java/es/uv/hemal/extraccion/extraccion/services/RecursoServiceTest.java}
+    \label{lst:recursoServiceTest}
+\end{longlisting}
+
+\begin{longlisting}
+       \caption{Test funcional \gls{e2e} del menú de gestión de reservas}
+    \inputminted{typescript}{../proyecto/cypress/e2e/gestion.cy.ts}
+     \label{lst:gestionTest}
+\end{longlisting}
+
+\begin{longlisting}
+      \caption{Test funcional \gls{e2e} del menú de login}
+    \inputminted{typescript}{../proyecto/cypress/e2e/login.cy.ts}
+     \label{lst:loginTest}
+\end{longlisting}
+
+\begin{longlisting}
+      \caption{Test funcional \gls{e2e} del menú de registro de usuario}
+    \inputminted{typescript}{../proyecto/cypress/e2e/register.cy.ts}
+     \label{lst:registerTest}
+\end{longlisting}
+\begin{longlisting}
+    \caption{Test funcional \gls{e2e} del menú de reservas}
+    \inputminted{typescript}{../proyecto/cypress/e2e/reserva.cy.ts}
+    \label{lst:reservaTest}
+\end{longlisting}

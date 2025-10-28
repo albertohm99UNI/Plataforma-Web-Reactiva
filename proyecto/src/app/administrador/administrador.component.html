@@ -1,0 +1,136 @@
+<div class="filtros" >
+  <mat-form-field>
+    <input matInput placeholder="Filtrar por nombre" [(ngModel)]="filtros.nombre" (keyup)="applyFilter()">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Filtrar por DNI" [(ngModel)]="filtros.dni" (keyup)="applyFilter()">
+  </mat-form-field>
+
+ <mat-form-field>
+  <mat-label>Filtrar por estado</mat-label>
+  <mat-select [(ngModel)]="filtros.estado" (selectionChange)="applyFilter()">
+    <mat-option value="">Todos</mat-option>
+    <mat-option value="CONFIRMADA">CONFIRMADA</mat-option>
+    <mat-option value="CANCELADA">CANCELADA</mat-option>
+    <mat-option value="PAGADA">PAGADA</mat-option>
+  </mat-select>
+</mat-form-field>
+
+ 
+
+<mat-accordion multi>
+
+  <!-- Panel de Reservas Activas -->
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>Reservas Activas</mat-panel-title>
+      <mat-panel-description>Ver u ocultar las reservas no finalizadas</mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Nombre -->
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let reserva"> {{reserva.nombre}} </mat-cell>
+      </ng-container>
+
+      <!-- Número de Personas -->
+      <ng-container matColumnDef="numeroPersonas">
+        <mat-header-cell *matHeaderCellDef> Nº Personas </mat-header-cell>
+        <mat-cell *matCellDef="let reserva"> {{reserva.numPersonas}} </mat-cell>
+      </ng-container>
+
+      <!-- Estado -->
+      <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+        <mat-cell *matCellDef="let reserva"> {{reserva.estado}} </mat-cell>
+      </ng-container>
+
+      <!-- Fechas -->
+      <ng-container matColumnDef="fechas">
+        <mat-header-cell *matHeaderCellDef> Fechas </mat-header-cell>
+        <mat-cell *matCellDef="let reserva">
+          {{reserva.fechaInicio[2]}}/{{reserva.fechaInicio[1]}}/{{reserva.fechaInicio[0]}} -
+          {{reserva.fechaFin[2]}}/{{reserva.fechaFin[1]}}/{{reserva.fechaFin[0]}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Acciones -->
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let reserva">
+          <button *ngIf="reserva.estado === 'PAGADA' || reserva.estado === 'FINALIZADA'" mat-icon-button [ngStyle]="{'color': 'green'}" disabled>
+            <mat-icon>check_circle</mat-icon>
+          </button>
+
+          <button *ngIf="reserva.estado === 'CANCELADA'" mat-icon-button color="warn" disabled>
+            <mat-icon>error</mat-icon>
+          </button>
+
+          <button *ngIf="reserva.estado !== 'PAGADA' && reserva.estado !== 'CANCELADA' && reserva.estado !== 'FINALIZADA'" mat-icon-button [ngStyle]="{'color': 'green'}" (click)="aprobarPagoReserva(reserva)">
+            <mat-icon>check</mat-icon>
+          </button>
+          <button *ngIf="reserva.estado !== 'PAGADA' && reserva.estado !== 'CANCELADA' && reserva.estado !== 'FINALIZADA'" mat-icon-button color="warn" (click)="cancelarReserva(reserva)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-expansion-panel>
+
+  <!-- Panel de Reservas Finalizadas -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Reservas Finalizadas</mat-panel-title>
+      <mat-panel-description>Ver u ocultar las reservas completadas</mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-table [dataSource]="finalizadas" class="mat-elevation-z8">
+      <!-- Nombre -->
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let reserva"> {{reserva.nombre}} </mat-cell>
+      </ng-container>
+
+      <!-- Número de Personas -->
+      <ng-container matColumnDef="numeroPersonas">
+        <mat-header-cell *matHeaderCellDef> Nº Personas </mat-header-cell>
+        <mat-cell *matCellDef="let reserva"> {{reserva.numPersonas}} </mat-cell>
+      </ng-container>
+
+      <!-- Estado -->
+      <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+        <mat-cell *matCellDef="let reserva"> {{reserva.estado}} </mat-cell>
+      </ng-container>
+
+      <!-- Fechas -->
+      <ng-container matColumnDef="fechas">
+        <mat-header-cell *matHeaderCellDef> Fechas </mat-header-cell>
+        <mat-cell *matCellDef="let reserva">
+          {{reserva.fechaInicio[2]}}/{{reserva.fechaInicio[1]}}/{{reserva.fechaInicio[0]}} -
+          {{reserva.fechaFin[2]}}/{{reserva.fechaFin[1]}}/{{reserva.fechaFin[0]}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Acciones (solo icono verde) -->
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let reserva">
+          <button mat-icon-button [ngStyle]="{'color': 'green'}" disabled>
+            <mat-icon>check_circle</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-expansion-panel>
+
+</mat-accordion>
+</div>

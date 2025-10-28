@@ -1,0 +1,100 @@
+\def\pgfcalendarmonthname#1{%
+  \ifcase#1
+    \or Ene\or Feb\or Mar\or Abr\or May\or Jun\or Jul\or Ago\or Sep\or Oct\or Nov\or Dic\fi%
+}
+
+
+
+
+\def\pgfcalendarweekdayletter#1{%
+    \ifcase#1
+    \textcolor{White!80!black}{\tiny L}
+    \or \textcolor{White!80!black}{\tiny M}
+    \or \textcolor{White!80!black}{\tiny W}
+    \or \textcolor{White!80!black}{\tiny J}
+    \or \textcolor{White!80!black}{\tiny V}
+    \or \textcolor{Yellow!80!black}{\tiny S}
+    \or \textcolor{Yellow!80!black}{\tiny D}
+    \fi%
+}
+
+\begin{ganttchart}[
+    hgrid,
+    vgrid,
+    x unit=.4cm,
+    y unit chart=0.8cm, 
+    y unit title=0.8cm,
+    time slot format=isodate,
+    title/.append style={draw=none, fill=RoyalBlue!50!black},
+    title label font=\sffamily\kern0.3em\color{White!90!black},
+    title height=1,
+    bar/.append style={draw=none, fill=OliveGreen!75, rounded corners=2pt},
+    bar label font=\sffamily\kern0.3em\color{black},
+    bar label node/.append style={xshift=-0.5cm, align=left},
+    bar height=0.4,
+    group/.append style={draw=none, fill=RoyalBlue!75, rounded corners=2pt},
+    bar label font=\Large\sffamily\color{black},
+    group label node/.append style={xshift=-0.5cm, align=left}, 
+    group height=0.4,
+    milestone/.append style={fill=orange},
+    milestone label font=\Large\sffamily\bfseries\color{orange!80!black},
+]{2024-11-01}{2025-02-06}
+
+    % Títulos del calendario
+    \gantttitle{Planificación del proyecto: Desde 01/11/2024 hasta 28/02/2025}{98} \\
+    \gantttitle{Sprint 1}{14}
+    \gantttitle{Sprint 2}{14}
+    \gantttitle{Sprint 3}{14}
+    \gantttitle{Sprint 4}{14}
+    \gantttitle{Sprint 5}{14}
+    \gantttitle{Sprint 6}{14}
+    \gantttitle{Sprint 7}{14}
+     \\
+    \gantttitlecalendar{month=name, weekday=letter} \\
+    % Tareas con fechas
+    \ganttbar{Documentación: Estado del arte}{2024-11-01}{2024-11-05} \\
+    \ganttbar{Análisis: Requisitos}{2024-11-06}{2024-11-07} \\
+    \ganttbar{Análisis: Especificación técnica}{2024-11-08}{2024-11-12} \\
+    \ganttbar{Análisis: Diagramas y casos de uso}{2024-11-13}{2024-11-14} \\
+       \ganttmilestone{Fin Sprint 1}{2024-11-14} \\
+    \ganttbar{Diseño: Diseño del usuario}{2024-11-15}{2024-11-20} \\
+    \ganttbar{Análisis:  Evaluación de compatibilidad tecnológica}{2024-11-21}{2024-11-22} \\
+    \ganttbar{Diseño: Infraestructura Backend}{2024-11-22}{2024-11-26} \\
+    \ganttbar{Implementación: Front End: Menú principal}{2024-11-27}{2024-11-28} \\
+    \ganttmilestone{Fin Sprint 2}{2024-11-28} \\
+    \ganttbar{Implementación: Formulario de contacto}{2024-11-29}{2024-11-29} \\
+    \ganttbar{Implementación: Autenticación y autorización}{2024-11-29}{2024-12-02} \\
+    \ganttbar{Implementación: Backend: Lógica y base de datos reseñas}{2024-12-03}{2024-12-08} \\
+    \ganttbar{Implementación:  Base de datos de usuarios y roles}{2024-12-08}{2024-12-08} \\
+    \ganttbar{Pruebas Unitarias: obtención de reseñas}{2024-12-09}{2024-12-09} \\
+    \ganttbar{Implementación: Microservicio: contenido de redes sociales}{2024-12-10}{2024-12-12} \\
+    \ganttmilestone{Fin Sprint 3}{2024-12-12} \\
+    \ganttbar{Implementación: Recomendaciones y eventos}{2024-12-13}{2024-12-14} \\
+    \ganttbar{Implementación: Información turística}{2024-12-15}{2024-12-16} \\
+    \ganttbar{Implementación: Integración datos: menú principal}{2024-12-17}{2024-12-18} \\
+    \ganttbar{Implementación: Integración datos: información turística}{2024-12-19}{2024-12-19} \\
+    \ganttbar{Pruebas: Integración de Datos: menú principal}{2024-12-20}{2024-12-20} \\
+    \ganttbar{Pruebas:  Integración de Datos: información turística}{2024-12-21}{2024-12-21} \\
+    \ganttbar{Implementación: Calendario de disponibilidad}{2024-12-22}{2024-12-24} \\
+    \ganttbar{Implementación: Sistema de reservas: Front End}{2024-12-24}{2024-12-25} \\
+    \ganttbar{Implementación: Base de datos de reservas}{2024-12-26}{2024-12-26} \\
+    \ganttmilestone{Fin Sprint 4}{2024-12-26} \\
+    \ganttbar{Implementación: Sistema de reservas: Backend}{2024-12-27}{2024-12-30} \\
+    \ganttbar{Pruebas Unitarias: sistema de reservas}{2024-12-31}{2024-12-31} \\
+    \ganttbar{Implementación: Mapas interactivos}{2024-12-31}{2024-12-31} \\
+    \ganttbar{Implementación: Pronóstico del clima}{2025-01-01}{2025-01-01} \\
+    \ganttbar{Implementación: Microservicio: clima API}{2025-01-02}{2025-01-04} \\
+    \ganttbar{Implementación: Microservicio: ayuntamientos API}{2025-01-05}{2025-01-07} \\
+    \ganttbar{Implementación: Actividades}{2025-01-08}{2025-01-09} \\
+    \ganttmilestone{Fin Sprint 5}{2025-01-09} \\
+    \ganttbar{Implementación: Microservicio: actividades API}{2025-01-10}{2025-01-14} \\
+    \ganttbar{Pruebas Integración de Datos:  actividades al aire libre}{2025-01-14}{2025-01-15}\\
+    \ganttbar{Pruebas Integración de Datos: recomendaciones y eventos}{2025-01-16}{2025-01-16} \\
+    \ganttbar{Implementación: Backend: Feed redes sociales}{2025-01-16}{2025-01-17} \\
+    \ganttbar{Pruebas: Usuario final}{2025-01-18}{2025-01-20} \\
+    \ganttbar{Pruebas: Seguridad}{2025-01-21}{2025-01-23} \\
+    \ganttmilestone{Fin Sprint 6}{2025-01-23} \\
+    \ganttbar{Dockerización: Backend y microservicios}{2025-01-24}{2025-01-29} \\
+    \ganttbar{Evaluación y despliegue nube}{2025-01-30}{2025-02-06}\\
+\ganttmilestone{Fin Sprint 7}{2025-02-06} \\
+\end{ganttchart}

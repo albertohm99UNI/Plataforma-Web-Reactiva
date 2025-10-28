@@ -1,0 +1,98 @@
+/* Global container styles */
+.container {
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  gap: 20px; /* Espacio entre las tarjetas */
+  padding: 20px;
+}
+
+.welcome-card,
+.contact-card {
+  width: 100%;
+  max-width: 800px; /* Limita el ancho máximo de las tarjetas */
+}
+
+.reservarahora {
+  color: #995d03;
+  align-items: center;
+}
+.header-icon {
+  font-size: 25px;
+  color: #995d03;
+  margin-right: 8px;
+}
+
+mat-card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #995d03;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #995d03;
+  font-family: 'Viner Hand ITC', bold;
+}
+
+mat-card-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+}
+.review-item {
+  margin-bottom: 1.5rem;
+
+  .review-summary {
+    cursor: pointer;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+
+  .detailed-rates {
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #fafafa;
+
+    .rate-detail {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .star-rating {
+    display: flex;
+    align-items: center;
+
+    .mat-icon {
+      font-size: 20px;
+      margin-right: 2px;
+
+      &.filled {
+        color: #995d03;
+      }
+    }
+  }
+}
+
+
+
+.quote {
+  margin: 10px 0;
+  padding: 10px;
+  border-left: 4px solid #995d03;
+  font-style: italic;
+  color: #666;
+}
+
+/* Contact form styles */
+mat-form-field {
+  width: 100%; /* Asegura que los campos ocupen todo el ancho disponible */
+  margin-bottom: 20px; /* Espacio entre los campos del formulario */
+}

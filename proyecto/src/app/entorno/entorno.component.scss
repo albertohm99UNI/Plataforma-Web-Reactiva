@@ -1,0 +1,86 @@
+.entorno-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.entorno-header-card {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.place-card {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-title,
+mat-card-subtitle {
+  text-align: center;
+}
+
+mat-card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #995d03;
+}
+
+.seccion {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #555;
+  font-family: 'Viner Hand ITC';
+}
+
+mat-card-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+mat-card-content {
+  text-align: center;
+}
+.header-icon {
+  font-size: 25px;
+  color: #995d03;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .entorno-header-card {
+    margin-bottom: 10px; /* Reduce el margen en pantallas pequeñas */
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.place-card {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card {
+  width: 100%;
+}
+
+img {
+  object-fit: cover;
+  width: 100%; 
+  height: 200px; 
+}

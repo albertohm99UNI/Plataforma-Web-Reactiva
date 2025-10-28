@@ -1,0 +1,197 @@
+.house-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.house-card {
+  max-width: 800px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-icon {
+  font-size: 24px;
+  color: #995d03;
+  margin-right: 8px;
+}
+
+.house-tour-video {
+  flex: 1;
+
+  width: 100%;
+
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video {
+  width: 100%; /* Ocupa todo el ancho del mat-card */
+  margin: 16px 0; /* Espacio alrededor del video */
+}
+mat-card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #995d03;
+}
+
+mat-card-subtitle {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+mat-card-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+mat-divider {
+  margin: 10px 0;
+}
+
+.house-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.house-card {
+  flex: 1;
+  max-width: 900px;
+  margin: 16px;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  margin: 16px 0;
+  border-radius: 8px;
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%;
+  display: flex; /* Añadido */
+  justify-content: center; /* Añadido para centrar horizontalmente */
+  align-items: center; /* Añadido para centrar verticalmente */
+  max-width: 100%;
+}
+
+.slide img {
+  max-width: 100%; /* Evita que la imagen se salga de los bordes */
+  height: auto;
+  border-radius: 8px;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 1;
+  
+  border-radius: 50%;
+}
+
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+button:hover {
+  color: #995d03;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+  .sin-puntos {
+    list-style-type: none;
+   
+  }
+
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%; /* Asegúrate de que el contenedor ocupe todo el espacio disponible */
+    margin: 16px 0;
+    border-radius: 8px;
+  }
+  
+  .carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    flex: 0 0 33.33%; /* Esto asegura que 3 imágenes se muestren en la pantalla a la vez */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  }
+  
+  .slide img {
+    max-width: 100%; /* Evita que la imagen se salga de los bordes */
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 50%;
+  }
+  
+  .carousel-button.prev {
+    left: 10px;
+  }
+  
+  .carousel-button.next {
+    right: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .house-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .carousel-container {
+      max-width: 100%;
+    }
+  
+    .slide {
+      flex: 0 0 100%; 
+    }
+  }
+
+

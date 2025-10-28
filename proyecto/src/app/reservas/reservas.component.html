@@ -1,0 +1,232 @@
+<div class="reservas-container">
+
+  <mat-card class="tarifas-card" >
+    <mat-card-header>
+      <mat-card-title>Tarifas</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <p>Alquiler casa completa. Animales consultar.</p>
+
+      <mat-list>
+        <mat-list-item>
+          <mat-icon matListIcon>calendar_today</mat-icon>
+          <span class="tarifa-item">1 día: 350€</span>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-icon matListIcon>weekend</mat-icon>
+          <span class="tarifa-item">Fin de semana: 560€</span>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-icon matListIcon>nights_stay</mat-icon>
+          <span class="tarifa-item">A partir de 3 noches: 210€/noche</span>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-icon matListIcon>event</mat-icon>
+          <span class="tarifa-item">Puentes y festivos a consultar</span>
+        </mat-list-item>
+      </mat-list>
+      <p *ngIf="email===''">Inicie sesión o <span>regístrese</span> para poder consultar el calendario de reservas y realizar una nueva reserva.
+        <button mat-raised-button routerLink="/login" class="mat-button">Iniciar sesión / Registrarse</button></p>
+      
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="reservas-card" *ngIf="email!==''">
+    <mat-card-header>
+      <mat-card-title>Reservas</mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      
+      <hr />
+      <p>Consulte disponibilidad y proceda con la reserva online:</p>
+      <div class="calendar-controls">
+        <button mat-button (click)="changeMonth(-1)">Ant.</button>
+        <span>{{ currentMonthYear }}</span>
+        <button mat-button (click)="changeMonth(1)">Sig.</button>
+      </div>
+      <div  *ngIf="aviso !== ''"><span>{{aviso}}</span></div>
+      <hr />
+      <ng-container *ngIf="events">
+        <mwl-calendar-month-view
+          [viewDate]="viewDate"
+          [events]="events"
+          [weekStartsOn]="1"
+          (dayClicked)="onDayClicked($event)"
+          [activeDayIsOpen]="false"
+          
+          (eventClicked)="onEventClicked($event.event)"
+        >
+        <ng-template #cellTemplate let-day="day">
+          <div [ngClass]="{'cal-disabled': !dateIsValid(day.date)}">
+            {{ day.date.getDate() }}
+          </div>
+        </ng-template>
+        
+       
+        
+        </mwl-calendar-month-view>
+      </ng-container>
+      <mat-divider></mat-divider>
+      <div *ngIf="seleccionado === true">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm)">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
+              Nombre es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" />
+            <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+              Email es requerido
+            </mat-error>
+            <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+              Introduzca un email válido
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>DNI</mat-label>
+            <input matInput formControlName="dni" />
+            <mat-error *ngIf="contactForm.get('dni')?.hasError('required') && contactForm.get('dni')?.touched">
+              El DNI/NIF es obligatorio
+            </mat-error>
+            <mat-error *ngIf="contactForm.get('dni')?.hasError('pattern') && contactForm.get('dni')?.touched">
+              El DNI/NIF debe tener un formato válido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefono"  />
+            <mat-error *ngIf="contactForm.get('telefono')?.hasError('required')">
+              Teléfono es requerido
+            </mat-error>
+            <mat-error *ngIf="contactForm.get('telefono')?.hasError('pattern') && contactForm.get('telefono')?.touched">
+              El teléfono debe tener un formato válido
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Número de huespedes</mat-label>
+            <input matInput formControlName="numPersonas" type="number" min="1" max="7" />
+            <mat-error *ngIf="contactForm.get('numPersonas')?.hasError('required')">
+              El número de huespedes es requerido
+            </mat-error>
+            <mat-error *ngIf="contactForm.get('numPersonas')?.hasError('min')">
+              El número mínimo de huespedes es 1
+            </mat-error>
+            <mat-error *ngIf="contactForm.get('numPersonas')?.hasError('max')">
+              El número máximo de huespedes es 7
+            </mat-error>
+          </mat-form-field>
+
+          <button class="reservarahora" mat-raised-button type="submit">
+            Reservar
+          </button>
+        </form>
+      </div>
+      <p>
+        Las reservas <span class="remarcar">también</span> podrán realizarse por teléfono, llamando o utilizando
+        WhatsApp al:
+      </p>
+
+      <mat-card class="contact-card">
+        <a mat-button href="tel:+34669511506">
+          <mat-divider></mat-divider>
+          <mat-icon class="contact-icon">phone</mat-icon>669 511 506 - Eva
+          <mat-divider></mat-divider>
+        </a>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+
+
+  <mat-card class="weather-card" *ngIf="email !== '' && weatherData.length > 0">
+    <mat-card-header>
+      <mat-card-title>Previsión del Tiempo</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    
+   
+    <div  class="weather-info">
+      <p  class="prevision">Previsión del tiempo para la fecha seleccionada (en caso de superar los 15 días se obtendrá de los datos históricos, por lo que el tiempo puede variar):</p>
+    
+        
+        <mat-card class="weather-container" *ngFor="let weather of weatherData">
+          <a [href]="'https://www.aemet.es/es/eltiempo/prediccion/municipios/tuejar-id46247'">
+            <mat-card-header class="weather-text">
+              <mat-card-title> <i [class]="weather.icon"  [ngStyle]="{
+        'font-size': '2rem',
+        display: 'block',
+        margin: '0 auto'
+      }"></i></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="text-center">
+              <p class="weather-text">{{ weather.date | date:'dd-MM' }}</p>
+              <p><strong>Min:</strong> {{ weather.minTemp }}°C<strong> Max:</strong> {{ weather.maxTemp }}°C</p>
+             
+            </mat-card-content>
+          </a>
+        </mat-card>
+    
+    </div>
+  
+    <p *ngIf="weatherData.length === 0 && (startDate || endDate)">
+      No se encontraron datos para el rango de fechas especificado.
+    </p>
+  </mat-card>
+  
+
+  
+
+  
+
+  <mat-card class="mis-reservas-card" *ngIf="email!=='' && reservas && reservas.length > 0">
+    <mat-card-header>
+      <mat-card-title>Mis Reservas</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <table mat-table [dataSource]="reservas" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let reserva"> {{reserva.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> Fechas </th>
+          <td mat-cell *matCellDef="let reserva"> 
+            {{reserva.fechaInicio[2]+'/'+reserva.fechaInicio[1]+'/'+reserva.fechaInicio[0]+'-'+reserva.fechaFin[2]+'/'+reserva.fechaFin[1]+'/'+reserva.fechaFin[0]}} 
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="numPersonas">
+          <th mat-header-cell *matHeaderCellDef> Nº Personas </th>
+          <td mat-cell *matCellDef="let reserva"> {{reserva.numPersonas}} </td>
+        </ng-container>
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let reserva"> {{reserva.estado}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  
+  
+  <mat-card *ngIf="user && (!reservas || reservas.length === 0)">
+    <mat-card-header>
+      <mat-card-title>No tienes reservas</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Aún no has realizado ninguna reserva. <span class="remarcar">¡Hazlo ahora!</span></p>
+    </mat-card-content>
+  </mat-card>
+</div>

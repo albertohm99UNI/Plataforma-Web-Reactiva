@@ -1,0 +1,416 @@
+---
+# 1. Volúmenes y PVCs
+
+# PostgreSQL
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/postgres"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+# MongoDB único para publicaciones, tiempo y extracción
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/mongo"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+# 1. PersistentVolume para el almacenamiento del token
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: token-pv
+spec:
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data/token-store  
+
+---
+# 2. PersistentVolumeClaim para el acceso al almacenamiento
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: token-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Mi
+
+# 3. Bases de datos
+
+# PostgreSQL
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:17
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: gestion
+            - name: POSTGRES_USER
+              value: admin
+            - name: POSTGRES_PASSWORD
+              value: admin_password
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+  clusterIP: None
+
+# MongoDB único compartido
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:8
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-data
+              mountPath: /data/db
+      volumes:
+        - name: mongo-data
+          persistentVolumeClaim:
+            claimName: mongo-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  selector:
+    app: mongo
+  ports:
+    - port: 27017
+      targetPort: 27017
+  clusterIP: None
+
+# 4. Aplicaciones Spring Boot
+
+# ElRinconDeEva
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elrincondeeva
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elrincondeeva
+  template:
+    metadata:
+      labels:
+        app: elrincondeeva
+    spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: busybox
+          command:
+            - sh
+            - -c
+            - "until nc -z -v -w30 postgres 5432; do echo 'Waiting for PostgreSQL...'; sleep 5; done;"
+      containers:
+        - name: elrincondeeva
+          image: albherre/elrincondeeva-app:v8
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: r2dbc:postgresql://postgres:5432/gestion
+            - name: FRONTEND_URL
+              value: http://localhost:4200
+            - name: SPRING_DATASOURCE_USERNAME
+              value: admin
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: admin_password
+            - name: PUBLICACIONESAPI_URL
+              value: http://publicacionesapi:8080
+            - name: TIEMPO_URL
+              value: http://tiempo:8080
+            - name: EXTRACCION_URL
+              value: http://extraccion:8080
+            - name: ADMIN_PASSWORD
+              value: admin123456
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elrincondeeva
+spec:
+  selector:
+    app: elrincondeeva
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer
+
+# publicacionesapi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publicacionesapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publicacionesapi
+  template:
+    metadata:
+      labels:
+        app: publicacionesapi
+    spec:
+      volumes:
+        - name: token-storage
+          persistentVolumeClaim:
+            claimName: token-pvc  # Refiere al PVC para el almacenamiento persistente
+      initContainers:
+
+        - name: wait-for-mongo
+          image: busybox
+          command:
+            - sh
+            - -c
+            - "until nc -z -v -w30 mongo 27017; do echo 'Waiting for MongoDB...'; sleep 5; done;"
+        - name: init-token
+          image: busybox
+          command:
+            - "sh"
+            - "-c"
+            - |
+                if [ ! -f /app/token.txt ]; then
+                  echo "IGAAIPJxg21SpBZAE1qYlo1dmNualJ6ZAGRyTEw2eG9qZAlVJcTB3S1pRZAWdCWGNQWmlKamJGeUFyQVQ2dmZA0d2lPMnpGY3YzV3ItNnJnLUcxOTR4OGVBSXNaSERqcnFIVHpJRmpGdS1jV1hjcWxXOU41VjV3" > /app/token.txt
+                fi
+          volumeMounts:
+            - name: token-storage
+              mountPath: /app  # Monta el volumen persistente donde se guardará el token.txt
+
+      containers:
+        - name: publicacionesapi
+          image: albherre/publicacionesapi-app:v8
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: mongodb://mongo:27017/mediadb
+            - name: INSTAGRAM_TOKEN_FILE_PATH
+              value: /data/  
+          volumeMounts:
+            - name: token-storage
+              mountPath: /app/data 
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: publicacionesapi
+spec:
+  selector:
+    app: publicacionesapi
+  ports:
+    - port: 8080
+      targetPort: 8080
+  clusterIP: None
+
+# tiempo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tiempo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tiempo
+  template:
+    metadata:
+      labels:
+        app: tiempo
+    spec:
+      initContainers:
+        - name: wait-for-mongo
+          image: busybox
+          command:
+            - sh
+            - -c
+            - "until nc -z -v -w30 mongo 27017; do echo 'Waiting for MongoDB...'; sleep 5; done;"
+      containers:
+        - name: tiempo
+          image: albherre/tiempo-app:v8
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: mongodb://mongo:27017/mediadb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tiempo
+spec:
+  selector:
+    app: tiempo
+  ports:
+    - port: 8080
+      targetPort: 8080
+  clusterIP: None
+
+# extraccion
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: extraccion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: extraccion
+  template:
+    metadata:
+      labels:
+        app: extraccion
+    spec:
+      initContainers:
+        - name: wait-for-mongo
+          image: busybox
+          command:
+            - sh
+            - -c
+            - "until nc -z -v -w30 mongo 27017; do echo 'Waiting for MongoDB...'; sleep 5; done;"
+      containers:
+        - name: extraccion
+          image: albherre/extraccion-app:v8
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: mongodb://mongo:27017/mediadb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: extraccion
+spec:
+  selector:
+    app: extraccion
+  ports:
+    - port: 8080
+      targetPort: 8080
+  clusterIP: None
+
+
+# 5. Ingress Controller (nginx ingresado previamente)
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: elrincondeeva
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+    - hosts:
+        - elrincondeeva.local
+      secretName: elrincondeeva-tls
+  rules:
+    - host: elrincondeeva.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: elrincondeeva
+                port:
+                  number: 80
+
+

@@ -1,0 +1,62 @@
+@startuml
+!theme aws-orange
+skinparam componentStyle rectangle
+
+' Forzar color de texto negro en todos los componentes
+skinparam Component {
+    FontColor black
+}
+skinparam Database {
+    FontColor black
+}
+skinparam Package {
+    FontColor black
+}
+skinparam Rectangle {
+    FontColor black
+}
+skinparam DefaultTextAlignment center
+
+package "Kubernetes Cluster" {
+    [Ingress Controller] --> [SistemaPrincipal (Docker)]
+
+    component "SistemaPrincipal (Docker)" {
+        [SistemaPrincipal (Spring Boot)] --> [PostgreSQL (Docker)]
+    }
+    [SistemaPrincipal (Spring Boot)] --> [Publicaciones (Docker)]
+    [SistemaPrincipal (Spring Boot)] --> [PrevisionDeTiempo (Docker)]
+    [SistemaPrincipal (Spring Boot)] --> [RecursosWeb (Docker)]
+
+    component "Publicaciones (Docker)" {
+        [Publicaciones (Spring Boot)] 
+        [Secret: token.txt] --> [Publicaciones (Spring Boot)]
+    } 
+
+    component "PrevisionDeTiempo (Docker)" {
+        [PrevisionDeTiempo (Spring Boot)] 
+    }
+
+    component "RecursosWeb (Docker)" {
+        [RecursosWeb (Spring Boot)] 
+    }
+
+    component "PostgreSQL (Docker)" {
+        database "PostgreSQL DB"
+        [PVC: postgres-pvc] --> [PostgreSQL DB]
+        [PV: postgres-pv] --> [PVC: postgres-pvc]
+    }
+
+    component "MongoDB (Docker)" {
+        database "MongoDB (publicaciones, recursosweb,tiempo)"
+        [PVC: mongo-pvc] --> [MongoDB]
+        [PV: mongo-pv] --> [PVC: mongo-pvc]
+    }
+
+    [Publicaciones (Spring Boot)] --> [MongoDB (Docker)]
+    [PrevisionDeTiempo (Spring Boot)] --> [MongoDB (Docker)]
+    [RecursosWeb (Spring Boot)] --> [MongoDB (Docker)]
+}
+
+cloud "Internet" as internet
+internet --> [Ingress Controller] : HTTPS
+@enduml
